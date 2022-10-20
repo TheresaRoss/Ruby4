@@ -1,0 +1,14 @@
+<%= "Avg Score is #{@avgS}"%> <br>
+<%= "Best Sub is #{@max_Sub}" %> 
+<% @score.each do |n| %>
+    <%= form_with url: '/scores/relay', method: 'post', data: {turbo:false} do |form| %>
+    <%= "You got #{n.point} in  #{n.grade} grade in subject of #{n.subject}"%>
+    <%= form.hidden_field :index,value:n.id%>
+    <%= form.hidden_field :studentid,value:@id%>
+    <%= form.submit "Edit"%>
+    <%= form.submit "Delete"%>
+<%end%><%end%>
+<%= form_with url: '/scores/relay', method: 'post', data: {turbo:false} do |form| %>
+ <%= form.hidden_field :index,value:@id%>
+ <%= form.submit "Add"%>
+ <%end%>
